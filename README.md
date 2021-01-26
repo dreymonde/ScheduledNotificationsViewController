@@ -31,7 +31,7 @@ self.navigationController?.pushViewController(notificationsVC, animated: true)
 
 ### Troubleshooting
 
-**Q: My notifications do not show up**
+**Q: My scheduled notifications list is empty**
 
 A: Make sure you have granted notifications permissions to your app on your device. More here: [ Asking Permission to Use Notifications](https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications)
 
