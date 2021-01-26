@@ -13,6 +13,7 @@
 - See all scheduled notifications in one place: every notification includes content, next trigger date, an identifier and a category name.
 - Tap on a notification in a list to immediately trigger its delivery (you can test live how the notification will look). The "real" notification will still arrive in time!
 - Scroll down to see recently delivered notifications (tap "Show Delivered Notifications")
+- Supports light and dark mode natively
 
 ## Usage
 
