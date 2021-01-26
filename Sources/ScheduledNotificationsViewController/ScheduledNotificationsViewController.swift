@@ -5,7 +5,7 @@
 //  Created by Oleg Dreyman on 1/26/21.
 //
 
-import NiceUI
+import UIKit
 import UserNotifications
 
 public final class ScheduledNotificationsViewController: UIViewController {
@@ -274,10 +274,4 @@ extension UNNotification: NotificationToShow {
     var _dateToCompare: Date? {
         return date
     }
-}
-
-@discardableResult
-func with<Obj: AnyObject>(_ object: Obj, _ block: (Obj) -> Void) -> Obj {
-    block(object)
-    return object
 }

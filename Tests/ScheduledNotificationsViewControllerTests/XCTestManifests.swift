@@ -1,7 +1,7 @@
 import XCTest
 
 #if !canImport(ObjectiveC)
-public func allTests() -> [XCTestCaseEntry] {
+func allTests() -> [XCTestCaseEntry] {
     return [
         testCase(ScheduledNotificationsViewControllerTests.allTests),
     ]

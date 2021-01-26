@@ -6,7 +6,7 @@
 //  Copyright © 2020 Oleg Dreyman. All rights reserved.
 //
 
-import NiceUI
+import UIKit
 
 enum Segment {
     case staticCell(SelectableTableViewCell)
