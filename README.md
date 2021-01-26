@@ -1,12 +1,12 @@
 # ScheduledNotificationsViewController
 
-**ScheduledNotificationsViewController** shows you all of your pending local notifications in one place, with all the information you need.
+> **[Nice Photon](https://nicephoton.com) is available for hire!** Talk to us if you have any iOS app development needs. We have 10+ years of experience making iOS apps for top Silicon Valley companies. Reach out at [starback@nicephoton.com](mailto:starback@nicephoton.com)
+
+**ScheduledNotificationsViewController** shows you all of your pending local notifications in one place, with all the information you need. Built at **[Nice Photon](https://nicephoton.com)**.
 
 | Scheduled | Delivered | Tap to trigger |
 | --- | --- | --- |
 | ![Scheduled](_Media/Pending.PNG) | ![Scheduled](_Media/Delivered.PNG) | ![Scheduled](_Media/Simulate.PNG) |
-
-> **[Nice Photon](https://nicephoton.com) is available for hire!** Talk to us if you have any iOS app development needs. We have 10+ years of experience making iOS apps for top Silicon Valley companies. Reach out at [starback@nicephoton.com](mailto:starback@nicephoton.com)
 
 ## Features
 
