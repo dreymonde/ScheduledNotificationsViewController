@@ -4,5 +4,5 @@
 
 | Scheduled | Delivered | Tap to trigger |
 | --- | --- | --- |
-| ![Scheduled](_Media/Pending.PNG) | ![Scheduled](_Media/Delivered.PNG) | ![Scheduled](_Media/Simulate.MP4) |
+| ![Scheduled](_Media/Pending.PNG) | ![Scheduled](_Media/Delivered.PNG) | ![Scheduled](_Media/Simulate.PNG) |
 
