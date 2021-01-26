@@ -22,8 +22,10 @@ import UIKit
 // ...somewhere in "Settings" screen:
 
 #if DEBUG
+
 let notificationsVC = ScheduledNotificationsViewController()
 self.navigationController?.pushViewController(notificationsVC, animated: true)
+
 #endif
 ```
 
