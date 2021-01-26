@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Delegated",
+        "repositoryURL": "https://github.com/dreymonde/Delegated",
+        "state": {
+          "branch": null,
+          "revision": "053851686cc7b38f71e0f3b5a5c2c33c716c9d9d",
+          "version": "2.1.0"
+        }
+      },
+      {
+        "package": "NiceUI",
+        "repositoryURL": "https://github.com/nicephoton/NiceUI",
+        "state": {
+          "branch": "main",
+          "revision": "22e03117a0537d66d733d7f1e130a1dc3f8eeff9",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
