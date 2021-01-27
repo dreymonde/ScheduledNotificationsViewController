@@ -58,10 +58,15 @@ public final class ScheduledNotificationsViewController: UIViewController {
         addKeyboardAwareTableView(tableView)
         tableView.separatorStyle = .singleLine
         tableView.contentInset.top += 8
-        
         tableView.rowHeight = UITableView.automaticDimension
+        
         tableView.addDynamicSegment(provider: self, dataSet: \.requests, style: .default) { (cell) in
             let titleLabel = with(UILabel()) {
+                $0.font = .systemFont(ofSize: 15, weight: .semibold)
+                $0.numberOfLines = 0
+                $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+            }
+            let subtitleLabel = with(UILabel()) {
                 $0.font = .systemFont(ofSize: 15, weight: .semibold)
                 $0.numberOfLines = 0
                 $0.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
@@ -72,7 +77,7 @@ public final class ScheduledNotificationsViewController: UIViewController {
                 $0.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
                 $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
             }
-            let content = Vertically(titleLabel, bodyLabel) {
+            let content = Vertically(titleLabel, subtitleLabel, bodyLabel) {
                 $0.spacing = 2
                 $0.alignment = .leading
             }
@@ -122,16 +127,22 @@ public final class ScheduledNotificationsViewController: UIViewController {
             
             cell.onReuse { (cell, notif) in
                 titleLabel.text = notif.request.content.title
-                bodyLabel.text = notif.request.content.body
-                triggerLabel.text = notif._dateLabel
                 
-                var ident = notif.request.identifier
-                var simulated = ""
-                while ident.hasSuffix("___np_notif_simulation") {
-                    ident.removeLast("___np_notif_simulation".count)
-                    simulated += " (simulated)"
+                let subtitle = notif.request.content.subtitle
+                subtitleLabel.text = subtitle.isEmpty ? nil : subtitle
+                
+                bodyLabel.text = notif.request.content.body
+                do {
+                    var components: [NSAttributedString.SystemSymbolBuilderComponent] = []
+                    if notif.request.content.sound == nil {
+                        components.append(.symbol(named: "speaker.slash.fill"))
+                        components.append(" ")
+                    }
+                    components.append(.string(notif._dateLabel))
+                    triggerLabel.attributedText = .withSymbols(font: triggerLabel.font, components)
                 }
-                idLabel.text = "id: " + ident + simulated
+                
+                idLabel.text = "id: " + notif.request.identifier
                 categoryLabel.text = "category: " + notif.request.content.categoryIdentifier
                 
                 cell.onSelect(to: self) { (self, cell) in
@@ -242,15 +253,15 @@ extension UNNotificationTrigger {
 }
 
 fileprivate protocol NotificationToShow {
-    var _dateLabel: String? { get }
+    var _dateLabel: String { get }
     var trigger: UNNotificationTrigger? { get }
     var request: UNNotificationRequest { get }
     var _dateToCompare: Date? { get }
 }
 
 extension UNNotificationRequest: NotificationToShow {
-    var _dateLabel: String? {
-        return trigger?._dateLabel
+    var _dateLabel: String {
+        return trigger?._dateLabel ?? ""
     }
     
     var request: UNNotificationRequest {
@@ -263,7 +274,7 @@ extension UNNotificationRequest: NotificationToShow {
 }
 
 extension UNNotification: NotificationToShow {
-    var _dateLabel: String? {
+    var _dateLabel: String {
         return ScheduledNotificationsViewController.formatter.string(from: date)
     }
     
@@ -274,4 +285,40 @@ extension UNNotification: NotificationToShow {
     var _dateToCompare: Date? {
         return date
     }
+}
+
+// inspired by https://gist.github.com/gk-plastics/f4ad7c3f4ffec57003ea8e2e7b7a7107
+extension NSAttributedString {
+    
+    enum SystemSymbolBuilderComponent: ExpressibleByStringLiteral {
+        typealias StringLiteralType = String
+        
+        case string(String)
+        case symbol(named: String)
+        
+        init(stringLiteral value: String) {
+            self = .string(value)
+        }
+    }
+    
+    static func withSymbols(font: UIFont, _ components: [SystemSymbolBuilderComponent]) -> NSAttributedString {
+        let symbolConfiguration = UIImage.SymbolConfiguration(font: font)
+        let attributedText = NSMutableAttributedString()
+        for component in components {
+            switch component {
+            case .string(let string):
+                attributedText.append(NSAttributedString(string: string))
+            case .symbol(named: let symbolName):
+                let symbolImage = UIImage(
+                    systemName: symbolName,
+                    withConfiguration: symbolConfiguration
+                )?.withRenderingMode(.alwaysTemplate)
+                let symbolTextAttachment = NSTextAttachment()
+                symbolTextAttachment.image = symbolImage
+                attributedText.append(NSAttributedString(attachment: symbolTextAttachment))
+            }
+        }
+        return attributedText
+    }
+    
 }
