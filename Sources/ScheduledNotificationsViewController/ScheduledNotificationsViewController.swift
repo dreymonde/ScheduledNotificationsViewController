@@ -125,31 +125,31 @@ public final class ScheduledNotificationsViewController: UIViewController {
                 $0.anchors.edges.marginsPin()
             }
             
-            cell.onReuse { (cell, notif) in
-                titleLabel.text = notif.request.content.title
+            cell.onReuse { (cell, notification) in
+                titleLabel.text = notification.request.content.title
                 
-                let subtitle = notif.request.content.subtitle
+                let subtitle = notification.request.content.subtitle
                 subtitleLabel.text = subtitle.isEmpty ? nil : subtitle
                 
-                bodyLabel.text = notif.request.content.body
+                bodyLabel.text = notification.request.content.body
                 do {
                     var components: [NSAttributedString.SystemSymbolBuilderComponent] = []
-                    if notif.request.content.sound == nil {
+                    if notification.request.content.sound == nil {
                         components.append(.symbol(named: "speaker.slash.fill"))
                         components.append(" ")
                     }
-                    components.append(.string(notif._dateLabel))
+                    components.append(.string(notification._dateLabel))
                     triggerLabel.attributedText = .withSymbols(font: triggerLabel.font, components)
                 }
                 
-                idLabel.text = "id: " + notif.request.identifier
-                categoryLabel.text = "category: " + notif.request.content.categoryIdentifier
+                idLabel.text = "id: " + notification.request.identifier
+                categoryLabel.text = "category: " + notification.request.content.categoryIdentifier
                 
                 cell.onSelect(to: self) { (self, cell) in
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.05, repeats: false)
                     let copy = UNNotificationRequest(
-                        identifier: notif.request.identifier + "___np_notif_simulation",
-                        content: notif.request.content,
+                        identifier: notification.request.identifier + "___np_notif_simulation",
+                        content: notification.request.content,
                         trigger: trigger
                     )
                     UNUserNotificationCenter.current().add(copy, withCompletionHandler: nil)
