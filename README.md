@@ -23,6 +23,7 @@ Built at **[Nice Photon](https://nicephoton.com)**.
 
 ```swift
 import UIKit
+import ScheduledNotificationsViewController
 
 // ...somewhere in "Settings" screen:
 
