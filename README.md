@@ -6,7 +6,7 @@
 
 **ScheduledNotificationsViewController** shows you all of your pending local notifications in one place, with all the information you need. Tapping on a notification will immediately trigger its delivery, making this small tool invaluable for debugging local notifications.
 
-Built at **[Nice Photon](https://nicephoton.com)**.
+Built at **[Nice Photon](https://nicephoton.com)**. Maintainer: [@dreymonde](https://github.com/dreymonde)
 
 | Scheduled | Delivered | Tap to trigger |
 | --- | --- | --- |
@@ -23,6 +23,7 @@ Built at **[Nice Photon](https://nicephoton.com)**.
 
 ```swift
 import UIKit
+import ScheduledNotificationsViewController
 
 // ...somewhere in "Settings" screen:
 
