@@ -8,6 +8,8 @@
 
 Built at **[Nice Photon](https://nicephoton.com)**. Maintainer: [@dreymonde](https://github.com/dreymonde)
 
+Medium story [here](https://medium.com/nice-photon-ios/introducing-schedulednotificationsviewcontroller-67c8b73813e3).
+
 | Scheduled | Delivered | Tap to trigger |
 | --- | --- | --- |
 | ![Scheduled](_Media/Pending.PNG) | ![Scheduled](_Media/Delivered.PNG) | ![Scheduled](_Media/Simulate.PNG) |
