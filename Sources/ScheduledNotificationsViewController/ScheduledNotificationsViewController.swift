@@ -244,8 +244,10 @@ extension UNNotificationTrigger {
             } else {
                 return nil
             }
+        #if !targetEnvironment(macCatalyst)
         case is UNLocationNotificationTrigger:
             return "location based"
+        #endif
         default:
             return nil
         }
